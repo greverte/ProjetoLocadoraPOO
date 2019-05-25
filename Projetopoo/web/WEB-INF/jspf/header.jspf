@@ -1,4 +1,4 @@
-<%@page import="db.Usuarios"%>
+<%@page import="br.com.fatecpg.locadora.Usuarios"%>
 <%@ page pageEncoding="UTF-8" %>
 <h1>Locadora - WebApp</h1>
 <%
