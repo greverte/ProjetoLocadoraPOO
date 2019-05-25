@@ -38,9 +38,12 @@ if(request.getParameter("logoff")!=null){
     <% Usuarios usuario = (Usuarios) session.getAttribute("usuario"); %>
     Bem vindo, <%=usuario.getNome()%> [<%=usuario.getRole()%>]
     <input type="submit" name="logoff" value="Sair"/>
-    <hr>
-    <a href="<%=path%>/cadastrados.jsp"> Usuarios Cadastrados</a>
-</form>    
+    </form>  
+    
+    <%if(usuario.getRole().equals("Administrador")){%>
+    [<a href="<%=path%>/admin/usuarios.jsp">Usuarios Cadastrados</a>]
+    <%}%>
+    
 <%}%>
 <%if(errorMessage != null){%>
 <h3><%=errorMessage%></h3>

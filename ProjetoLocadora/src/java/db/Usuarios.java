@@ -12,17 +12,41 @@ public class Usuarios {
     private String role;
     private String login;
     private long passwordHash;
-    
-    public Usuarios() {
-    }
-    
+    private long rg;
 
-    public Usuarios(long id, String nome, String role, String login, long passwordHash) {
+    public Usuarios(long id, String nome, String role, String login, long passwordHash, long rg) {
         this.id = id;
         this.nome = nome;
         this.role = role;
         this.login = login;
         this.passwordHash = passwordHash;
+        this.rg = rg;
+    }
+    
+    
+    public static Usuarios getUsuarios(String login, String senha)
+            throws Exception{
+        
+        String SQL = "SELECT * FROM USUARIOS "
+                + "WHERE usuario_login = ? AND usuario_passwordhash = ?";
+        Object parameters[] = {login, senha.hashCode()};
+        ArrayList<Object[]> list = Conexao.getQuery(SQL, parameters);
+        if(list.isEmpty()){
+            return null;
+        }
+        else{
+            Object row[] = list.get(0);
+            Usuarios x = new Usuarios(
+                    (long) row[0],
+                    (String) row[1],
+                    (String) row[2],
+                    (String) row[3],
+                    (long) row[4],
+                    (long) row[5]
+            );
+            return x;
+        }
+        
     }
 
     public long getId() {
@@ -64,30 +88,37 @@ public class Usuarios {
     public void setPasswordHash(long passwordHash) {
         this.passwordHash = passwordHash;
     }
-    
-    public static Usuarios getUsuarios(String login, String senha)
+
+    public long getRg() {
+        return rg;
+    }
+
+    public void setRg(long rg) {
+        this.rg = rg;
+    }
+
+
+
+public static ArrayList<Usuarios> getTodos()
             throws Exception{
         
-        String SQL = "SELECT * FROM USUARIOS "
-                + "WHERE usuario_login = ? AND usuario_passwordhash = ?";
-        Object parameters[] = {login, senha.hashCode()};
-        ArrayList<Object[]> list = Conexao.getQuery(SQL, parameters);
-        if(list.isEmpty()){
-            return null;
-        }
-        else{
-            Object row[] = list.get(0);
+        String SQL = "SELECT * FROM USUARIOS";
+        ArrayList<Usuarios> todos = new ArrayList<>();
+        ArrayList<Object[]> list = Conexao.getQuery(SQL, new Object[]{});
+       for(int i=0; i<list.size(); i++){
+            Object row[] = list.get(i);
             Usuarios x = new Usuarios(
                     (long) row[0],
                     (String) row[1],
                     (String) row[2],
                     (String) row[3],
-                    (long) row[4]
-            );
-            return x;
+                    (long) row[4],
+                    (long) row[5]
+                    );
+                    todos.add(x);
+                    
         }
+        return todos;
         
     }
 }
-
-
