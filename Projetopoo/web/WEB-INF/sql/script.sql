@@ -29,6 +29,9 @@ filme_genero VARCHAR(20) NOT NULL,
 filme_preco DOUBLE NOT NULL
 );
 
+INSERT INTO filmes VALUES
+(default,'teste','comedia',20.00);
+
 DROP TABLE locacoes;
 
 CREATE TABLE locacoes(

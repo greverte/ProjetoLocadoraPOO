@@ -1,4 +1,4 @@
-package db;
+package br.com.fatecpg.locadora;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 
 public class Conexao {
     private static final String DRIVER = "org.apache.derby.jdbc.ClientDriver";
-    private static final String URL = "jdbc:derby://localhost:1527/ProjetoPoo";
+    private static final String URL = "jdbc:d+erby://localhost:1527/ProjetoPoo";
     private static final String USER = "poo";
     private static final String PASS = "poo";
     

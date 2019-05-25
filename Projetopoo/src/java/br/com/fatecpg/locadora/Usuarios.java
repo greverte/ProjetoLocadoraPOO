@@ -1,5 +1,5 @@
 
-package db;
+package br.com.fatecpg.locadora;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

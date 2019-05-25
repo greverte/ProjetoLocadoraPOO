@@ -4,7 +4,7 @@
     Author     : gabri
 --%>
 
-<%@page import="db.Usuarios"%>
+<%@page import="br.com.fatecpg.locadora.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
