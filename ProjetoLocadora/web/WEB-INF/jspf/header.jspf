@@ -43,6 +43,7 @@ if(request.getParameter("logoff")!=null){
     
     <%if(usuario.getRole().equals("Administrador")){%>
     [<a href="<%=path%>/admin/usuarios.jsp">Usuarios Cadastrados</a>]    
+    [<a href="<%=path%>/admin/gfilmes.jsp">Gerenciar Filmes</a>]    
     <%}%>
     <%if(usuario.getRole().equals("Cliente")){%>
     <a href="<%=path%>/clientes/filmes.jsp">Lista de Filmes</a>

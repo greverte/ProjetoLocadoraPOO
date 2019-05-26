@@ -1,3 +1,6 @@
+CREATE DATABASE dblocadora;
+
+
 DROP TABLE usuarios;
 
 CREATE TABLE usuarios(
