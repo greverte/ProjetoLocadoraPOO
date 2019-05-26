@@ -4,6 +4,7 @@
 <%
     String path = request.getContextPath();
     String errorMessage = null;
+    
 if(request.getParameter("logon")!= null){
     String login = request.getParameter("login");
     String senha = request.getParameter("senha");
@@ -34,14 +35,17 @@ if(request.getParameter("logoff")!=null){
 </form>
 
 <%}else{%>
-<form>
+<form action="http://localhost:8084/ProjetoLocadora/home.jsp">
     <% Usuarios usuario = (Usuarios) session.getAttribute("usuario"); %>
     Bem vindo, <%=usuario.getNome()%> [<%=usuario.getRole()%>]
     <input type="submit" name="logoff" value="Sair"/>
     </form>  
     
     <%if(usuario.getRole().equals("Administrador")){%>
-    [<a href="<%=path%>/admin/usuarios.jsp">Usuarios Cadastrados</a>]
+    [<a href="<%=path%>/admin/usuarios.jsp">Usuarios Cadastrados</a>]    
+    <%}%>
+    <%if(usuario.getRole().equals("Cliente")){%>
+    <a href="<%=path%>/clientes/filmes.jsp">Lista de Filmes</a>
     <%}%>
     
 <%}%>

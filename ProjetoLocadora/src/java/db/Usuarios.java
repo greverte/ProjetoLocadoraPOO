@@ -121,4 +121,70 @@ public static ArrayList<Usuarios> getTodos()
         return todos;
         
     }
+public static void AddUsuario(String nome, String role, String rg, String login, long senha) throws Exception{
+    
+    String SQL = "INSERT INTO USUARIOS VALUES("
+            + "default"
+            + ", ?"
+            + ", ?"
+            + ", ?"
+            + ", ?"
+            + ", ?"
+            + ")";
+            
+          
+    
+    Object parameters[] = {nome, role, login, senha, rg};
+    Conexao.execute(SQL, parameters);
+            
+}
+public static void ExcluirUsuario(long id) throws Exception{
+    
+    String SQL = "DELETE FROM USUARIOS WHERE USUARIO_ID = ?";       
+    Object parameters[] = {id};
+    Conexao.execute(SQL, parameters);
+            
+}
+public static void AlterarUsuario(long id, String nome, String role, long rg, String login, long senha) throws Exception{
+    
+    String SQL = "UPDATE USUARIOS("
+            + "default"
+            + ", USUARIO_NOME = ?"
+            + ", USUARIO_ROLE = ?"
+            + ", USUARIO_RG = ?"
+            + ", USUARIO_LOGIN = ?"
+            + ", USUARIO_PASSWORDHASH = ?"
+            + "WHERE USUARIO_ID = ?"
+            + ")";
+            
+          
+    
+    Object parameters[] = {id, nome, role, rg, login, senha};
+    Conexao.execute(SQL, parameters);
+}
+
+public static Usuarios teste(long id)
+            throws Exception{
+        
+        String SQL = "SELECT * FROM USUARIOS WHERE USUARIO_LOGIN = ?";
+               
+        Object parameters[] = {id};
+        ArrayList<Object[]> list = Conexao.getQuery(SQL, parameters);
+        if(list.isEmpty()){
+            return null;
+        }
+        else{
+            Object row[] = list.get(0);
+            Usuarios x = new Usuarios(
+                    (long) row[0],
+                    (String) row[1],
+                    (String) row[2],
+                    (String) row[3],
+                    (long) row[4],
+                    (long) row[5]
+            );
+            return x;
+        }
+        
+    }
 }
